@@ -49,10 +49,11 @@ database.ref().on("child_added", function(childSnapshot){
 	console.log(railName);
 	console.log(trainID);
 	console.log(destination);
+	console.log(startTime);
 	console.log(frequency);
 	
 	//Time Math
-	var firstTimeConverted = moment(startTime, "hh:mm")
+	var firstTimeConverted = moment(startTime, "HH:mm");
 	console.log("This is first time converted: " + firstTimeConverted);
 	
 	var currentTime = moment();
