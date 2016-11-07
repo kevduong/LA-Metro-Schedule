@@ -53,14 +53,29 @@ database.ref().on("child_added", function(childSnapshot){
 	console.log(frequency);
 	
 	//Time Math
-	var firstTimeConverted = moment(startTime, "HH:mm");
-	console.log("This is first time converted: " + firstTimeConverted);
-	
-	var currentTime = moment();
-	console.log("Current time: " + moment(currentTime).format("hh:mm"));
-	
-	var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-	console.log("Difference in time: " + diffTime);
+// First Time (pushed back 1 year to make sure it comes before current time)
+		var firstTimeConverted = moment(startTime,"hh:mm").subtract(1, "years");
+		console.log(firstTimeConverted);
+
+		// Current Time
+		var currentTime = moment();
+		console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+		// Difference between the times
+		var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+		console.log("DIFFERENCE IN TIME: " + diffTime);
+
+		// Time apart (remainder)
+		var tRemainder = diffTime % frequency;
+		console.log(tRemainder);
+
+		// Minute Until Train
+		var tMinutesTillTrain = frequency - tRemainder;
+		console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+		// Next Train
+		var nextTrain = moment().add(tMinutesTillTrain, "minutes")
+		console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"))
 	
 	
 
@@ -76,7 +91,7 @@ database.ref().on("child_added", function(childSnapshot){
 //	console.log(frequency);
 
 	// Add each train's data into the table
-	$("#trainTable > tbody").append("<tr><td>" + railName + "</td><td>" + trainID + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + railName + "</td><td>" + railName + "</td></tr>");
+	$("#trainTable > tbody").append("<tr><td>" + railName + "</td><td>" + "<a href='https://developers.google.com/maps/documentation/javascript/tutorial'>" + trainID + "</a>" + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + moment(nextTrain).format("hh:mm a") + "</td><td>" + tMinutesTillTrain + "</td></tr>");
 
 	});
 	

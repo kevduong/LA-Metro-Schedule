@@ -1,3 +1,6 @@
+body {
+	background-color: #e8e8e8;
+}
 .jumbotron {
 	background-image: url(../images/bg-jumbo.png);
 	background-size: cover;
@@ -14,7 +17,9 @@ a {
 	text-decoration: underline;
 }
 
-
+.table {
+	margin-bottom: 80px;
+}
 
 
 .dropdown {

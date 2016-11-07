@@ -27,88 +27,18 @@
 		<h1 class="text-center">LA Metro Rails</h1>
 		<p class="text-center">Add Metro Rail schedule by inputting the requested values.<br>  Notify riders immedetiately if there are expected delays.</p>
 	</div>
-
-	<!-- Current Train Schedule -->
+	
+<!-- Train Input-->
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
-			<div class="panel-heading" style="background-color: #00a7e0; color: white;">
-					<h3 class="panel-title">Current Rail Schedule</h3>
-				</div>
-				<div class="panel-body">
-
-					<div class="row">
-<!--						table-->
-				<table class="table" id="trainTable"> 
-				<thead>
-					<tr> 
-					<th>Rail Name</th> 
-					<th>ID #</th> 
-					<th>Destination</th> 
-					<th>Frequency (min)</th> 
-					<th>Next Arrival</th> 
-					<th>Minutes Away</th> 
-					</tr> 
-				</thead> 
-			<tbody>
-				<tr> 
-					<td>Expo Line</td> 
-					<td>FHD1234</td> 
-					<td>Santa Monica</td>
-					<td>15</td> 
-					<td>05:30 PM</td> 
-					<td>3</td> 
-				</tr> 
-				<tr> 
-					<td>Red Line</td> 
-					<td><a href="https://developers.google.com/maps/documentation/javascript/tutorial">LPU3643</a></td> 
-					<td>7th / Grand</td>
-					<td>15</td> 
-					<td>05:30 PM</td> 
-					<td>3</td> 
-				</tr> 
-				<tr> 
-					<td>Gold Line</td> 
-					<td>TXP1203</td> 
-					<td>Boyle Heights</td>
-					<td>15</td> 
-					<td>05:30 PM</td> 
-					<td>3</td>  
-				</tr> 
-			</tbody> 
-			
-			<div class="row"></div>
-		</table>
-				<div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    Export schedule as...
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a href="#">.xlsx</a></li>
-    <li><a href="#">.pdf</a></li>
-    <li role="separator" class="divider"></li>
-    <li><a href="#">print</a></li>
-  </ul>
-</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Train Input-->
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="panel panel-default">
-				<div class="panel-heading" style="background-color: #00a7e0; color: white;">
+				<div class="panel-heading" style="background-color: #536c75; color: white;">
 					<h3 class="panel-title">Add Rails </h3>
 				</div>
 				<div class="panel-body">
 					<form>
 						<div class="form-group">
 							<label for="railName">Rail Name</label><br>
-<!--							<input type="text" class="form-control" id="railName">-->
 							<select id="railName">
 								<option id="fea" value="" disabled="disabled" selected="selected">Select a rail...</option>
 								<option value="Blue Line">Blue Line</option>
@@ -117,17 +47,17 @@
 								<option value="Green Line">Green Line</option>
 								<option value="Purple">Purple Line</option>
 								<option value="Red Line">Red Line</option>
-
-
-</select>
+							</select>
 						</div>
+						
 						<div class="form-group">
 							<label for="trainId">Train ID #</label>
 							<input type="text" class="form-control" id="trainID" placeholder="(e.g. ABC1234)">
 						</div>	
 						<div class="form-group">
-							<label for="destination">Destination</label>
+							<label for="destination">Station/Location</label>
 							<input type="text" class="form-control" id="destination">
+							
 						</div>	
 						<div class="form-group">
 							<label for="startTime">First Train Time (military time)</label>
@@ -144,6 +74,51 @@
 			</div>
 		</div>
 	</div>
+	<!-- Current Train Schedule -->
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+			<div class="panel-heading" style="background-color: #536c75; color: white;">
+					<h3 class="panel-title">Current Rail Schedule</h3>
+				</div>
+				<div class="panel-body">
+
+					<div class="row">
+				<!--Table-->
+				<table class="table" id="trainTable"> 
+				<thead>
+					<tr> 
+					<th>Rail Name</th> 
+					<th>Track ID #</th> 
+					<th>Destination</th> 
+					<th>Frequency (min)</th> 
+					<th>Next Arrival</th> 
+					<th>Minutes Away</th> 
+					</tr> 
+				</thead> 
+			<tbody>
+				
+			</tbody> 
+			
+		</table>
+	</div>
+			<div class="dropdown" style="margin-bottom: 30px;margin-right: 25px;">
+			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-download-alt"></span>
+				 Export schedule as...
+				<span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li><a href="#">.xlsx</a></li>
+				<li><a href="#">.pdf</a></li>
+				<li role="separator" class="divider"></li>
+				<li><a href="#">print</a></li>
+			  </ul>
+			</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>
 
 </div>
