@@ -1,0 +1,24 @@
+.jumbotron {
+	background-image: url(../images/bg-jumbo.png);
+	background-size: cover;
+	color: white;
+}
+
+.jumbotron p {
+	padding-bottom: 150px;
+}
+
+
+a {
+	color:orange;
+	text-decoration: underline;
+}
+
+
+
+
+.dropdown {
+	position: absolute;;
+	bottom: 0;
+	right: 0;
+}
