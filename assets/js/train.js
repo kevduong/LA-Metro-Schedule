@@ -77,22 +77,70 @@ database.ref().on("child_added", function(childSnapshot){
 		var nextTrain = moment().add(tMinutesTillTrain, "minutes")
 		console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"))
 	
-	
-
-//	// Prettify the employee start
-//	var empStartPretty = moment.unix(frequency).format("MM/DD/YY");
-//	// Calculate the months worked using hardconre math
-//	// To calculate the months worked
-//	var empMonths = moment().diff(moment.unix(empStart, 'X'), "months");
-//	console.log(frequency);
-//
-//	// Calculate the total billed rate
-//	var empBilled = empMonths * empRate;
-//	console.log(frequency);
-
 	// Add each train's data into the table
-	$("#trainTable > tbody").append("<tr><td>" + railName + "</td><td>" + "<a href='https://developers.google.com/maps/documentation/javascript/tutorial'>" + trainID + "</a>" + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + moment(nextTrain).format("hh:mm a") + "</td><td>" + tMinutesTillTrain + "</td></tr>");
+	$("#trainTable > tbody").append("<tr><td>" + railName + "</td><td>" + "<a href='https://developers.google.com/maps/documentation/javascript/tutorial'>" + trainID + "</a>" + "</td><td>" + destination + "</td><td>" + setTimeout + "</td><td>" + moment(nextTrain).format("hh:mm a") + "</td><td>" + tMinutesTillTrain + "</td></tr>");
 
 	});
+	
+});
+
+// User Login
+
+$('#signIn').on('click', function () { 
+var provider = new firebase.auth.GoogleAuthProvider();
+provider.addScope('https://www.googleapis.com/auth/plus.login');
+
+firebase.auth().signInWithPopup(provider).then(function(result) {
+  // This gives you a Google Access Token. You can use it to access the Google API.
+  var token = result.credential.accessToken;
+  // The signed-in user info.
+  var user = result.user;
+  // ...
+}).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // The email of the user's account used.
+  var email = error.email;
+  // The firebase.auth.AuthCredential type that was used.
+  var credential = error.credential;
+  // ...
+});
+
+firebase.auth().signOut().then(function() {
+  // Sign-out successful.
+}, function(error) {
+  // An error happened.
+});
+
+	// Triggers when the auth state change for instance when the user signs-in or signs-out.
+firebase.prototype.onAuthStateChanged = function(user) {
+  if (user) { // User is signed in!
+    // Get profile pic and user's name from the Firebase user object.
+    var userName = user.displayName;        // TODO(DEVELOPER): Get user's name.
+
+    // Set the user's profile pic and name.
+    this.userName.textContent = userName;
+
+    // Show user's profile and sign-out button.
+    this.userName.removeAttribute('hidden');
+    this.signOutButton.removeAttribute('hidden');
+
+    // Hide sign-in button.
+    this.signInButton.setAttribute('hidden', 'true');
+
+    // We load currently existing chant messages.
+    this.loadMessages();
+  } else { // User is signed out!
+    // Hide user's profile and sign-out button.
+    this.userName.setAttribute('hidden', 'true');
+    this.userPic.setAttribute('hidden', 'true');
+    this.signOutButton.setAttribute('hidden', 'true');
+
+    // Show sign-in button.
+    this.signInButton.removeAttribute('hidden');
+  }
+};
+	
 	
 });
