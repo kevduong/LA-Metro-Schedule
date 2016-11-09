@@ -1,3 +1,4 @@
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyDPdVt3MtTA7RvlcE9H-V2RzW2fVOrVgac",
@@ -78,7 +79,7 @@ database.ref().on("child_added", function(childSnapshot){
 		console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"))
 	
 	// Add each train's data into the table
-	$("#trainTable > tbody").append("<tr><td>" + railName + "</td><td>" + "<a href='https://developers.google.com/maps/documentation/javascript/tutorial'>" + trainID + "</a>" + "</td><td>" + destination + "</td><td>" + setTimeout + "</td><td>" + moment(nextTrain).format("hh:mm a") + "</td><td>" + tMinutesTillTrain + "</td></tr>");
+	$("#trainTable > tbody").append("<tr><td>" + railName + "</td><td>" + "<a href='https://developers.google.com/maps/documentation/javascript/tutorial'>" + trainID + "</a>" + "</td><td>" + destination  + "</td><td>" + moment(nextTrain).format("hh:mm a") + "</td><td>" + tMinutesTillTrain + "</td></tr>");
 
 	});
 	
@@ -86,7 +87,8 @@ database.ref().on("child_added", function(childSnapshot){
 
 // User Login
 
-$('#signIn').on('click', function () { 
+$('#sign-in').on('click', function () {
+
 var provider = new firebase.auth.GoogleAuthProvider();
 provider.addScope('https://www.googleapis.com/auth/plus.login');
 
@@ -106,41 +108,18 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
   var credential = error.credential;
   // ...
 });
-
-firebase.auth().signOut().then(function() {
-  // Sign-out successful.
-}, function(error) {
-  // An error happened.
+debugger;
+	$('#sign-in').hide();
+	$('#app').html("<button id='sign-out' class='btn btn-warning btn-lg'>Sign Out</button>");
 });
+	$('#sign-out').on('click', function(){
+		firebase.auth().signOut().then(function() {
+			 // Sign-out successful.
+			},function(error) {
+			  // An error happened.
+		
+			$('#sign-out').hide();
+			$('#sign-in').show();
+		});		
+	})
 
-	// Triggers when the auth state change for instance when the user signs-in or signs-out.
-firebase.prototype.onAuthStateChanged = function(user) {
-  if (user) { // User is signed in!
-    // Get profile pic and user's name from the Firebase user object.
-    var userName = user.displayName;        // TODO(DEVELOPER): Get user's name.
-
-    // Set the user's profile pic and name.
-    this.userName.textContent = userName;
-
-    // Show user's profile and sign-out button.
-    this.userName.removeAttribute('hidden');
-    this.signOutButton.removeAttribute('hidden');
-
-    // Hide sign-in button.
-    this.signInButton.setAttribute('hidden', 'true');
-
-    // We load currently existing chant messages.
-    this.loadMessages();
-  } else { // User is signed out!
-    // Hide user's profile and sign-out button.
-    this.userName.setAttribute('hidden', 'true');
-    this.userPic.setAttribute('hidden', 'true');
-    this.signOutButton.setAttribute('hidden', 'true');
-
-    // Show sign-in button.
-    this.signInButton.removeAttribute('hidden');
-  }
-};
-	
-	
-});

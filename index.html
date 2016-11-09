@@ -34,9 +34,12 @@
 
 	<!--Sign in-->
 	<div class="row">
-		<div class="col-lg-2 col-md-offset-10" id="app">
-		
-		<button class="btn-lg" id="signIn">GOOGLE SIGN IN</button>
+		<div class="col-lg-2 col-sm-offset-9" id="app">
+		<div hidden id="user-name"></div>
+		  
+        <button hidden id="sign-in" class="btn btn-warning btn-lg">
+          Sign-in with Google
+        </button>
 		</div>
 	</div>	
 	<!-- Train Input-->
@@ -104,7 +107,6 @@
 					<th>Destination</th> 
 					<th>Frequency (min)</th> 
 					<th>Next Arrival</th> 
-					<th>Minutes Away</th> 
 					</tr> 
 				</thead> 
 			<tbody>
